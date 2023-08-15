@@ -127,3 +127,22 @@ input {
   font-size: 25px;
   margin-top: 2rem;
 }
+
+.column-half {
+  display: fle;
+}
+
+ul {
+  z-index: 1;
+  color: white;
+  font-size: 30px;
+  display: none;
+  list-style: none;
+  letter-spacing: 2px;
+}
+
+.list-styling {
+  display: flex;
+  justify-content: flex-start;
+  background-color: rgba(0, 0, 0, 0.6);
+}
