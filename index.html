@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="initial-hidden">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,13 +9,42 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
-  <header>
+
+  <header class="header">
+    <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+    <div class="top-row">
+      <div class="column-third">
+        <img class="logo" src="./images/valorantlogo.png" alt="valorant logo img">
+      </div>
+    </div>
+    <i class="fa-regular fa-heart fa-2xl"></i>
   </header>
+  <div class="row">
+    <div class="search-bar-full">
+      <input class="main-search" type="text" placeholder="Search...">
+    </div>
+  </div>
+
   <main>
+
+    <!-- loading page hidden after button click -->
+    <div class="loading-page ">
+      <img class="first-logo" src="./images/valorantlogo.png" alt="valorant logo img">
+      <div class="enter-btn ">
+        <button class="enter-button btn draw-border hidden"> CLICK TO ENTER </button>
+      </div>
+    </div>
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>
