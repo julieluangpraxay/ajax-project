@@ -1,0 +1,4 @@
+.column-third {
+  flex-basis: calc(100% / 3);
+  flex-wrap: wrap;
+}
