@@ -1,37 +1,23 @@
 
-const $enterButton = document.querySelector('.enter-btn');
-// const $body = document.querySelector('body');
-// const $firstLogo = document.querySelector('.first-logo'); // Assuming you have a .first-logo element
-// const $header = document.querySelector('.header'); // Assuming you have a .header element
-const $mainSearch = document.querySelector('.search-bar-full');
+const $enterButton = document.querySelector('.enter-button');
+const $background = document.querySelector('#background');
+const $loading = document.querySelector('.loading');
 
-// Add a click event listener to the button
 $enterButton.addEventListener('click', function () {
-  // Hide the button, background image, and .first-logo
-  $enterButton.classList.add = 'hidden';
-  // $body.style.backgroundImage = 'none';
-  // $firstLogo.style.display = 'none';
-  // const clicked = $enterButton;
-  // if (clicked === true);
-  $mainSearch.classList.add = 'hidden';
-  // // Show the header
-  // $header.style.display = 'flex';
-  // // show the new background image
-  // // $body.style.backgroundImage = 'url(../images/mainbg.jpg)';
-  // // show the ol of the weapon list
-  // $displayIcon.style.display = 'flex';
+  $enterButton.classList.add('hidden');
+  $background.className = 'skin-background';
+  $loading.classList.add('hidden');
   getSkinsData();
 });
 
-const $displayIcon = document.querySelector('.display-icon');
+const $skinsContainer = document.querySelector('.skins-container');
 function getSkinsData(name) {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://valorant-api.com/v1/weapons/skins');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    for (let i = 0; i < xhr.response.data.length; i++) {
+    for (let i = 0; i < 25; i++) {
       const $imgWrapper = document.createElement('div');
-
       const $iconImage = document.createElement('img');
       const $div = document.createElement('div'); // outerdiv
       const $p = document.createElement('p');
@@ -41,14 +27,14 @@ function getSkinsData(name) {
 
       $p.textContent = xhr.response.data[i].displayName;
       // $video.src = xhr.response.data[i].streamedVdieo;
-      $div.classList.add('container');
+      $div.classList.add('column-third');
       $imgWrapper.classList.add('img-wrapper');
 
-      $displayIcon.appendChild($div);
       $div.appendChild($iconImage);
       $div.appendChild($p);
       $div.appendChild($imgWrapper);
       $imgWrapper.appendChild($iconImage);
+      $skinsContainer.appendChild($div);
       // $div.appendChild($video);
 
     }

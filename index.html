@@ -29,37 +29,29 @@
 
   <main>
     <div class="container">
-      <div class="row">
-        <div class="search-bar-full">
-          <input class="main-search" type="text" placeholder="Search...">
-        </div>
-      </div>
-
-
-
-
-      <div class="row">
-        <div class="column-third display-icon">
-
-        </div>
-      </div>
-
-
-
-
-
-      <!-- loading page hidden after button click -->
-
-      <div class="row">
-        <div class="column-full">
-          <img class="first-logo" src="./images/valorantlogo.png" alt="valorant logo img">
-          <div class="enter-btn ">
-            <button class="enter-button btn draw-border hidden"> CLICK TO ENTER </button>
+      <div id="background" class="loading-background">
+        <div class="row">
+          <div class="search-bar-full">
+            <input class="main-search" type="text" placeholder="Search...">
           </div>
         </div>
+        <!-- main content -->
+        <div class="row loading">
+          <div class="column-full">
+            <img class="first-logo" src="./images/valorantlogo.png" alt="valorant logo img">
+            <div class="enter-btn ">
+              <button class="enter-button"> CLICK TO ENTER </button>
+            </div>
+          </div>
 
+        </div>
+        <div class="row skins-container">
+        </div>
       </div>
+
+      <!-- loading page hidden after button click -->
     </div>
+
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
