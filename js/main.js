@@ -1,43 +1,61 @@
 
+// new code that searches and works but is slow
 const $enterButton = document.querySelector('.enter-button');
 const $background = document.querySelector('#background');
-const $loading = document.querySelector('.loading');
+const $loadingLogo = document.querySelector('.loading');
+const $searchBar = document.querySelector('.main-search');
+const $searchButton = document.querySelector('.search-button');
+const $skinsContainer = document.querySelector('.skins-container');
 
 $enterButton.addEventListener('click', function () {
   $enterButton.classList.add('hidden');
   $background.className = 'skin-background';
-  $loading.classList.add('hidden');
+  $loadingLogo.classList.add('hidden');
+  $searchBar.classList.remove('hidden');
+  $searchButton.classList.remove('hidden');
   getSkinsData();
 });
 
-const $skinsContainer = document.querySelector('.skins-container');
 function getSkinsData(name) {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://valorant-api.com/v1/weapons/skins');
+  xhr.open('GET', 'https://valorant-api.com/v1/playercards');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    for (let i = 0; i < 25; i++) {
-      const $imgWrapper = document.createElement('div');
-      const $iconImage = document.createElement('img');
-      const $div = document.createElement('div'); // outerdiv
-      const $p = document.createElement('p');
-      // const $video = document.createElement('video');
+    $skinsContainer.innerHTML = ''; // Clear previous content
 
-      $iconImage.src = xhr.response.data[i].displayIcon; // Set the image source
+    for (let i = 0; i < xhr.response.data.length; i++) {
+      const skinName = xhr.response.data[i].displayName.toLowerCase(); // Convert to lowercase for case-insensitive search
 
-      $p.textContent = xhr.response.data[i].displayName;
-      // $video.src = xhr.response.data[i].streamedVdieo;
-      $div.classList.add('column-third');
-      $imgWrapper.classList.add('img-wrapper');
+      if (!name || skinName.includes(name.toLowerCase())) { // Check if search term is empty or matches skin name
+        const $div = document.createElement('div'); // outerdiv
+        const $imgWrapper = document.createElement('div');
+        const $iconImage = document.createElement('img');
+        const $p = document.createElement('p');
 
-      $div.appendChild($iconImage);
-      $div.appendChild($p);
-      $div.appendChild($imgWrapper);
-      $imgWrapper.appendChild($iconImage);
-      $skinsContainer.appendChild($div);
-      // $div.appendChild($video);
+        $iconImage.src = xhr.response.data[i].largeArt;
+        $p.textContent = xhr.response.data[i].displayName;
 
+        $div.classList.add('column-third');
+        $imgWrapper.classList.add('img-wrapper');
+
+        $div.appendChild($imgWrapper);
+        $imgWrapper.appendChild($iconImage);
+        $div.appendChild($p);
+        $skinsContainer.appendChild($div);
+      }
     }
   });
   xhr.send();
 }
+
+function searchClick(event) {
+  if (event) {
+    event.preventDefault();
+  }
+
+  const searchSkin = $searchBar.value;
+  getSkinsData(searchSkin);
+}
+
+$searchButton.addEventListener('click', searchClick);
+$searchBar.addEventListener('input', searchClick);

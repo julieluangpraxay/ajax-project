@@ -1,7 +1,14 @@
 .column-third {
   flex-basis: calc(100% / 3);
+  padding: 1rem;
 }
 
 .hidden {
   display: none !important;
+}
+
+@media screen and (max-width: 390px) {
+  .column-third {
+    flex-basis: 100%;
+  }
 }
