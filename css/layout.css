@@ -1,5 +1,5 @@
-.column-third {
-  flex-basis: calc(100% / 3);
+.column-fourth {
+  flex-basis: calc(100% / 4);
   padding: 1rem;
 }
 
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 390px) {
-  .column-third {
-    flex-basis: 100%;
+  .column-fourth {
+    flex-basis: 33%;
   }
 }
