@@ -22,9 +22,9 @@ function getSkinsData(name) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     $skinsContainer.innerHTML = ''; // Clears previous content
+    data.sprays = xhr.response.data;
     for (let i = 0; i < xhr.response.data.length; i++) {
-      const skinName = xhr.response.data[i].displayName.toLowerCase();
-      if (!name || skinName.includes(name.toLowerCase())) { // Check if search term is empty or matches skin name
+      if (xhr.response.data[i].fullTransparentIcon !== null) {
         const $div = document.createElement('div'); // outerdiv
         const $imgWrapper = document.createElement('div');
         const $iconImage = document.createElement('img');
@@ -49,9 +49,28 @@ function getSkinsData(name) {
 // SEARCH BAR FUNCTION
 $searchBar.addEventListener('input', searchClick);
 function searchClick(event) {
-  if (event) {
-    event.preventDefault();
-  }
+  event.preventDefault();
   const searchSkin = $searchBar.value;
-  getSkinsData(searchSkin);
+  $skinsContainer.innerHTML = ''; // Clears previous content
+  for (let i = 0; i < data.sprays.length; i++) {
+    const sprayName = data.sprays[i].displayName.toLowerCase();
+    // console.log('data.sprays[i].fullTransparentIcon:', data.sprays[i].fullTransparentIcon);
+    if (!searchSkin || sprayName.includes(searchSkin.toLowerCase() && data.sprays[i].fullTransparentIcon !== null)) {
+      const $div = document.createElement('div'); // outerdiv
+      const $imgWrapper = document.createElement('div');
+      const $iconImage = document.createElement('img');
+      const $p = document.createElement('p');
+      const $heartIcon = document.createElement('i');
+      $iconImage.src = data.sprays[i].fullTransparentIcon;
+      $p.textContent = data.sprays[i].displayName;
+      $div.classList.add('column-fourth');
+      $imgWrapper.classList.add('img-wrapper');
+      $heartIcon.className = 'fa-regular fa-heart fa-2xl image-heart';
+      $div.appendChild($imgWrapper);
+      $imgWrapper.appendChild($heartIcon);
+      $imgWrapper.appendChild($iconImage);
+      $div.appendChild($p);
+      $skinsContainer.appendChild($div);
+    }
+  }
 }
