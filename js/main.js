@@ -22,9 +22,10 @@ function getSkinsData(name) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     $skinsContainer.innerHTML = ''; // Clears previous content
-    data.sprays = xhr.response.data;
+
     for (let i = 0; i < xhr.response.data.length; i++) {
       if (xhr.response.data[i].fullTransparentIcon !== null) {
+        data.sprays.push(xhr.response.data[i]);
         const $div = document.createElement('div'); // outerdiv
         const $imgWrapper = document.createElement('div');
         const $iconImage = document.createElement('img');
@@ -54,8 +55,7 @@ function searchClick(event) {
   $skinsContainer.innerHTML = ''; // Clears previous content
   for (let i = 0; i < data.sprays.length; i++) {
     const sprayName = data.sprays[i].displayName.toLowerCase();
-    // console.log('data.sprays[i].fullTransparentIcon:', data.sprays[i].fullTransparentIcon);
-    if (!searchSkin || sprayName.includes(searchSkin.toLowerCase() && data.sprays[i].fullTransparentIcon !== null)) {
+    if ((!searchSkin || sprayName.includes(searchSkin.toLowerCase())) && (data.sprays[i].fullTransparentIcon !== null)) {
       const $div = document.createElement('div'); // outerdiv
       const $imgWrapper = document.createElement('div');
       const $iconImage = document.createElement('img');
