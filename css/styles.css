@@ -31,7 +31,7 @@ header {
 }
 
 .loading-background {
-  background-image: url("/images/loading.png");
+  background-image: url("../images/loading.png");
   width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -40,7 +40,7 @@ header {
 }
 
 .skin-background {
-  background-image: url("/images/mainbg.png");
+  background-image: url("../images/mainbg.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
