@@ -36,8 +36,15 @@ function getSkinsData(name) {
         $div.classList.add('column-fourth');
         $imgWrapper.classList.add('img-wrapper');
         $heartIcon.className = 'fa-regular fa-heart fa-2xl image-heart';
+
+        // Create the heart button element
+        const $heartButton = document.createElement('i');
+        $heartButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl', 'image-heart');
+        $heartButton.addEventListener('click', favoriteClicked);
+
         $div.appendChild($imgWrapper);
         $imgWrapper.appendChild($heartIcon);
+        $imgWrapper.appendChild($heartButton);
         $imgWrapper.appendChild($iconImage);
         $div.appendChild($p);
         $skinsContainer.appendChild($div);
@@ -73,4 +80,11 @@ function searchClick(event) {
       $skinsContainer.appendChild($div);
     }
   }
+}
+
+// Define the favoriteClicked function
+function favoriteClicked(event) {
+  const clickedHeart = event.target;
+  clickedHeart.classList.add('fa-solid');
+  clickedHeart.classList.remove('fa-regular');
 }
