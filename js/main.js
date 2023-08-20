@@ -68,13 +68,21 @@ function searchClick(event) {
       const $iconImage = document.createElement('img');
       const $p = document.createElement('p');
       const $heartIcon = document.createElement('i');
+
       $iconImage.src = data.sprays[i].fullTransparentIcon;
       $p.textContent = data.sprays[i].displayName;
+
       $div.classList.add('column-fourth');
       $imgWrapper.classList.add('img-wrapper');
       $heartIcon.className = 'fa-regular fa-heart fa-2xl image-heart';
+
+      const $heartButton = document.createElement('i');
+      $heartButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl', 'image-heart');
+      $heartButton.addEventListener('click', favoriteClicked);
+
       $div.appendChild($imgWrapper);
       $imgWrapper.appendChild($heartIcon);
+      $imgWrapper.appendChild($heartButton);
       $imgWrapper.appendChild($iconImage);
       $div.appendChild($p);
       $skinsContainer.appendChild($div);
@@ -82,7 +90,6 @@ function searchClick(event) {
   }
 }
 
-// Define the favoriteClicked function
 function favoriteClicked(event) {
   const clickedHeart = event.target;
   clickedHeart.classList.add('fa-solid');

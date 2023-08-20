@@ -1,4 +1,5 @@
 /* exported data */
 const data = {
-  sprays: []
+  sprays: [],
+  favorites: []
 };
