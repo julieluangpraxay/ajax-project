@@ -94,4 +94,18 @@ function favoriteClicked(event) {
   const clickedHeart = event.target;
   clickedHeart.classList.add('fa-solid');
   clickedHeart.classList.remove('fa-regular');
+  const clickedSprayDiv = clickedHeart.closest('column-fourth');
+
+  const sprayIndex = data.sprays.findIndex(function (spray) {
+    return spray.fullTransparentIcon === clickedSprayDiv.querySelector('img').src;
+  });
+
+  if (sprayIndex !== -1) {
+    // Check if the spray is not already in favorites
+    if (!data.favorites.includes(data.sprays[sprayIndex])) {
+      data.favorites.push(data.sprays[sprayIndex]);
+      // Save updated favorites array to local storage
+      localStorage.setItem('favorites', JSON.stringify(data.favorites));
+    }
+  }
 }
