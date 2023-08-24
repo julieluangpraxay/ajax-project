@@ -92,9 +92,7 @@ function searchClick(event) {
 
 function favoriteClicked(event) {
   const clickedHeart = event.target;
-  clickedHeart.classList.add('fa-solid');
-  clickedHeart.classList.remove('fa-regular');
-  const clickedSprayDiv = clickedHeart.closest('column-fourth');
+  const clickedSprayDiv = clickedHeart.closest('.column-fourth'); // Add the dot before 'column-fourth'
 
   const sprayIndex = data.sprays.findIndex(function (spray) {
     return spray.fullTransparentIcon === clickedSprayDiv.querySelector('img').src;
@@ -106,6 +104,16 @@ function favoriteClicked(event) {
       data.favorites.push(data.sprays[sprayIndex]);
       // Save updated favorites array to local storage
       localStorage.setItem('favorites', JSON.stringify(data.favorites));
+      clickedHeart.classList.add('fa-solid');
+      clickedHeart.classList.remove('fa-regular');
+    } else {
+      // If the spray is already in favorites, remove it and update the heart icon
+      data.favorites = data.favorites.filter(function (favSpray) {
+        return favSpray.fullTransparentIcon !== data.sprays[sprayIndex].fullTransparentIcon;
+      });
+      localStorage.setItem('favorites', JSON.stringify(data.favorites));
+      clickedHeart.classList.remove('fa-solid');
+      clickedHeart.classList.add('fa-regular');
     }
   }
 }
